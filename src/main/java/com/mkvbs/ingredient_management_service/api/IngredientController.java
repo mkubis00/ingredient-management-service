@@ -34,7 +34,7 @@ public class IngredientController {
      * @return saved ingredient
      */
     @PostMapping("/v1/post_ingredient")
-    public ResponseEntity<Ingredient> postIngredient(@Valid @RequestBody IngredientRequest ingredientRequest, BindingResult result) {
+    public ResponseEntity<Ingredient> postIngredient(@Valid @RequestBody IngredientRequest ingredientRequest) {
         Ingredient ingredient = ingredientRequest.createIngredient();
         Ingredient savedIngredient = ingredientService.saveIngredient(ingredient);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedIngredient);
