@@ -1,13 +1,12 @@
 package com.mkvbs.ingredient_management_service.api;
 
-import com.mkvbs.ingredient_management_service.model.Ingredient;
 import com.mkvbs.ingredient_management_service.model.api.IngredientRequest;
+import com.mkvbs.ingredient_management_service.model.api.IngredientResponse;
 import com.mkvbs.ingredient_management_service.service.IngredientService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,9 +33,8 @@ public class IngredientController {
      * @return saved ingredient
      */
     @PostMapping("/v1/post_ingredient")
-    public ResponseEntity<Ingredient> postIngredient(@Valid @RequestBody IngredientRequest ingredientRequest) {
-        Ingredient ingredient = ingredientRequest.createIngredient();
-        Ingredient savedIngredient = ingredientService.saveIngredient(ingredient);
+    public ResponseEntity<IngredientResponse> postIngredient(@Valid @RequestBody IngredientRequest ingredientRequest) {
+        IngredientResponse savedIngredient = ingredientService.saveIngredient(ingredientRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedIngredient);
     }
 
@@ -47,9 +45,8 @@ public class IngredientController {
      * @return saved ingredients
      */
     @PostMapping("/v1/post_ingredients")
-    public ResponseEntity<List<Ingredient>> postIngredientsList(@RequestBody List<IngredientRequest> ingredientsRequest) {
-        List<Ingredient> ingredients = ingredientsRequest.stream().map(IngredientRequest::createIngredient).toList();
-        List<Ingredient> savedIngredientList = ingredientService.saveIngredientsList(ingredients);
+    public ResponseEntity<List<IngredientResponse>> postIngredientsList(@RequestBody List<IngredientRequest> ingredientsRequest) {
+        List<IngredientResponse> savedIngredientList = ingredientService.saveIngredientsList(ingredientsRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedIngredientList);
     }
 
@@ -77,8 +74,8 @@ public class IngredientController {
      * @return list of ingredients
      */
     @GetMapping("/v1/get_ingredients_from_uuid_list/{uuidList}")
-    public ResponseEntity<List<Ingredient>> getIngredientsByIdList(@PathVariable List<UUID> uuidList) {
-        List<Ingredient> ingredients = ingredientService.getIngredientsByUuidList(uuidList);
+    public ResponseEntity<List<IngredientResponse>> getIngredientsByIdList(@PathVariable List<UUID> uuidList) {
+        List<IngredientResponse> ingredients = ingredientService.getIngredientsByUuidList(uuidList);
         return ResponseEntity.status(HttpStatus.OK).body(ingredients);
     }
 
@@ -88,8 +85,8 @@ public class IngredientController {
      * @return ingredient
      */
     @GetMapping("/v1/get_ingredient/{uuid}")
-    public ResponseEntity<Ingredient> getIngredientById(@PathVariable UUID uuid) {
-        Ingredient ingredient = ingredientService.findIngredientById(uuid);
+    public ResponseEntity<IngredientResponse> getIngredientById(@PathVariable UUID uuid) {
+        IngredientResponse ingredient = ingredientService.getIngredientById(uuid);
         return ResponseEntity.status(HttpStatus.OK).body(ingredient);
     }
 
@@ -99,8 +96,8 @@ public class IngredientController {
      * @return list of all ingredients in database.
      */
     @GetMapping("/v1/get_all_ingredient")
-    public ResponseEntity<List<Ingredient>> getAllIngredients() {
-        List<Ingredient> ingredients = ingredientService.findAllIngredients();
+    public ResponseEntity<List<IngredientResponse>> getAllIngredients() {
+        List<IngredientResponse> ingredients = ingredientService.findAllIngredients();
         return ResponseEntity.status(HttpStatus.OK).body(ingredients);
     }
 

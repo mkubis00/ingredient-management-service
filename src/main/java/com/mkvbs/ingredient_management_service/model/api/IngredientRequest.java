@@ -1,18 +1,14 @@
 package com.mkvbs.ingredient_management_service.model.api;
 
 import com.mkvbs.ingredient_management_service.model.Allergen;
-import com.mkvbs.ingredient_management_service.model.Ingredient;
 import com.mkvbs.ingredient_management_service.model.TypeOfQuantity;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 
-@Data
-@Builder(access = AccessLevel.PRIVATE)
+@Getter
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class IngredientRequest {
 
@@ -22,12 +18,4 @@ public class IngredientRequest {
     @NotNull(message = "Type of quantity cannot be null")
     private final TypeOfQuantity typeOfQuantity;
     private final Allergen allergen;
-
-    public Ingredient createIngredient() {
-        return Ingredient.builder()
-                .name(name)
-                .typeOfQuantity(typeOfQuantity)
-                .allergen(allergen)
-                .build();
-    }
 }
