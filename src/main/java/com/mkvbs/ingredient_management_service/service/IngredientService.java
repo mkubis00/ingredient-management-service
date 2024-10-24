@@ -35,6 +35,10 @@ public class IngredientService {
         return ingredientResponseFactory.create(ingredientToReturn);
     }
 
+    public UUID getIngredientByName(String name) {
+        return ingredientRepository.findUuidByIngredientName(name).orElseThrow(()-> new EntityNotFoundException("Recipe with name: " + name + " not found."));
+    }
+
     public List<IngredientResponse> findAllIngredients() {
         List<Ingredient> ingredientsToReturn = ingredientRepository.findAll();
         return ingredientsToReturn.stream().map(ingredientResponseFactory::create).toList();
