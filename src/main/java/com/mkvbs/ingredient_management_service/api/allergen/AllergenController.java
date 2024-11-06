@@ -1,4 +1,4 @@
-package com.mkvbs.ingredient_management_service.api;
+package com.mkvbs.ingredient_management_service.api.allergen;
 
 import com.mkvbs.ingredient_management_service.model.Allergen;
 import com.mkvbs.ingredient_management_service.service.AllergenService;
