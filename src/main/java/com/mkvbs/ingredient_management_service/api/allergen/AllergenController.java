@@ -20,12 +20,22 @@ public class AllergenController {
 
     private final AllergenService allergenService;
 
+    /**
+     * Api method used to get allergen description.
+     * @param allergen which is allergen to describe.
+     * @return void
+     */
     @GetMapping("/v1/get_description/{allergen}")
     public ResponseEntity<String> getAllergenDescription(@PathVariable Allergen allergen) {
         String allergenValue = allergenService.getAllergenDescription(allergen);
         return ResponseEntity.status(HttpStatus.OK).body(allergenValue);
     }
 
+    /**
+     * Api method used to get allergens from ingredients list.
+     * @param ingredients which is ingredients to take allergens from.
+     * @return allergens
+     */
     @GetMapping("/v1/get_allergens_from_ingredients/{ingredients}")
     public ResponseEntity<List<Allergen>> getAllergensFromIngredients(@PathVariable List<UUID> ingredients) {
         List<Allergen> allergens = allergenService.getAllergensListByIngredientsIdList(ingredients);

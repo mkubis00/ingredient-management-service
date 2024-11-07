@@ -21,18 +21,6 @@ public class GetIngredientController {
     private final IngredientService ingredientService;
 
     /**
-     * Api method used to get ingredients object from uuid list.
-     * Typically used to fetch ingredients for recipe which holds only ingredients ids.
-     * @param uuidList list of ingredients id
-     * @return list of ingredients
-     */
-    @GetMapping("/v1/get_ingredients_from_uuid_list/{uuidList}")
-    public ResponseEntity<List<IngredientResponse>> getIngredientsByIdList(@PathVariable List<UUID> uuidList) {
-        List<IngredientResponse> ingredients = ingredientService.getIngredientsByUuidList(uuidList);
-        return ResponseEntity.status(HttpStatus.OK).body(ingredients);
-    }
-
-    /**
      * Api method used to fetch ingredient object by its id.
      * @param uuid ingredient to fetch
      * @return ingredient
@@ -55,6 +43,29 @@ public class GetIngredientController {
     }
 
     /**
+     * Api method used to get ingredients objects from uuid list.
+     * Typically used to fetch ingredients for recipe which holds only ingredients ids.
+     * @param idsList list of ingredients id
+     * @return list of ingredients
+     */
+    @GetMapping("/v1/get_ingredients_from_uuid_list/{uuidList}")
+    public ResponseEntity<List<IngredientResponse>> getIngredientsByIdsList(@PathVariable List<UUID> idsList) {
+        List<IngredientResponse> ingredients = ingredientService.getIngredientsByUuidList(idsList);
+        return ResponseEntity.status(HttpStatus.OK).body(ingredients);
+    }
+
+    /**
+     * Api method used to fetch ingredient object by its name.
+     * @param ingredientName to fetch.
+     * @return ingredient
+     */
+    @GetMapping("/v1/get_ingredient_by_name/{ingredientName}")
+    public ResponseEntity<UUID> getIngredientIdtByName(@PathVariable String ingredientName) {
+        UUID ingredientIdWithName = ingredientService.getIngredientByName(ingredientName);
+        return ResponseEntity.status(HttpStatus.OK).body(ingredientIdWithName);
+    }
+
+    /**
      * Api method that returns ids list of the recipes which names matches passed name list.
      * Typically used to return ids of the ingredients which are searched by user.
      * @param ingredientNames names of ingredients
@@ -64,11 +75,5 @@ public class GetIngredientController {
     public ResponseEntity<List<UUID>> getIngredientsByIngredientsNames(@PathVariable List<String> ingredientNames) {
         List<UUID> ingredientsUuids = ingredientService.findIngredientsWithNames(ingredientNames);
         return ResponseEntity.status(HttpStatus.OK).body(ingredientsUuids);
-    }
-
-    @GetMapping("/v1/get_ingredient_by_name/{ingredientName}")
-    public ResponseEntity<UUID> getIngredientIdtByName(@PathVariable String ingredientName) {
-        UUID ingredientIdWithName = ingredientService.getIngredientByName(ingredientName);
-        return ResponseEntity.status(HttpStatus.OK).body(ingredientIdWithName);
     }
 }

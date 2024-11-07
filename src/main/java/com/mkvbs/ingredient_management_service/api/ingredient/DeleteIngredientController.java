@@ -29,6 +29,10 @@ public class DeleteIngredientController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    /**
+     * Api method used to delete all ingredients.
+     * @return void
+     */
     @DeleteMapping("/v1/delete_all_ingredients")
     public ResponseEntity<Void> deleteAllIngredients() {
         ingredientService.deleteAllIngredients();
