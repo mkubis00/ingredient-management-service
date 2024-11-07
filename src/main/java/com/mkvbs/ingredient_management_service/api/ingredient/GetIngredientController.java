@@ -67,7 +67,7 @@ public class GetIngredientController {
     }
 
     @GetMapping("/v1/get_ingredient_by_name/{ingredientName}")
-    public ResponseEntity<UUID> getIngredienIdtByName(@PathVariable String ingredientName) {
+    public ResponseEntity<UUID> getIngredientIdtByName(@PathVariable String ingredientName) {
         UUID ingredientIdWithName = ingredientService.getIngredientByName(ingredientName);
         return ResponseEntity.status(HttpStatus.OK).body(ingredientIdWithName);
     }

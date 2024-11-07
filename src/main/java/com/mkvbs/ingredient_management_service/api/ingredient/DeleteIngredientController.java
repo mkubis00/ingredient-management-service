@@ -4,7 +4,6 @@ import com.mkvbs.ingredient_management_service.service.IngredientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +14,6 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/ingredients")
 @AllArgsConstructor
-@Validated
 public class DeleteIngredientController {
 
     private final IngredientService ingredientService;

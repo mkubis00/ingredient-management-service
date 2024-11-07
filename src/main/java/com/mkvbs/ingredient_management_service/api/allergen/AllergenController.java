@@ -22,7 +22,7 @@ public class AllergenController {
 
     @GetMapping("/v1/get_description/{allergen}")
     public ResponseEntity<String> getAllergenDescription(@PathVariable Allergen allergen) {
-        String allergenValue = allergen.getAllergenDescription();
+        String allergenValue = allergenService.getAllergenDescription(allergen);
         return ResponseEntity.status(HttpStatus.OK).body(allergenValue);
     }
 
