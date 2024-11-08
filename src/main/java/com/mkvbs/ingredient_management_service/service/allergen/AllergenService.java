@@ -16,8 +16,7 @@ public class AllergenService {
     private final IngredientRepository ingredientRepository;
 
     public List<Allergen> getAllergensListByIngredientsIdList(List<UUID> uuids) {
-        return ingredientRepository.findDistinctAllergensByIngredientIds(uuids)
-                .orElseThrow(() -> new EntityNotFoundException("Allergen list for " + uuids + " list not found"));
+        return ingredientRepository.findDistinctAllergensByIngredientIds(uuids);
     }
 
     public String getAllergenDescription(Allergen allergen) {

@@ -46,6 +46,6 @@ public class GetIngredientService {
     }
 
     public List<UUID> getIngredientsWithNames(List<String> names) {
-        return ingredientRepository.findUuidsByIngredientName(names).orElseThrow();
+        return ingredientRepository.findUuidsByIngredientName(names);
     }
 }

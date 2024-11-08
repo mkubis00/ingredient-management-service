@@ -15,10 +15,10 @@ import java.util.UUID;
 public interface IngredientRepository extends JpaRepository<Ingredient, UUID> {
 
     @Query("SELECT DISTINCT i.allergen FROM Ingredient i WHERE i.id IN :ingredientIds")
-    Optional<List<Allergen>> findDistinctAllergensByIngredientIds(@Param("ingredientIds") List<UUID> ingredientIds);
+    List<Allergen> findDistinctAllergensByIngredientIds(@Param("ingredientIds") List<UUID> ingredientIds);
 
     @Query("SELECT DISTINCT i.id FROM Ingredient i WHERE i.name IN :IngredientNameList")
-    Optional<List<UUID>> findUuidsByIngredientName(@Param("IngredientNameList") List<String> ingredientNameList);
+    List<UUID> findUuidsByIngredientName(@Param("IngredientNameList") List<String> ingredientNameList);
 
     @Query("SELECT i.id FROM Ingredient i WHERE i.name = :ingredientName")
     Optional<UUID> findUuidByIngredientName(@Param("ingredientName") String ingredientName);

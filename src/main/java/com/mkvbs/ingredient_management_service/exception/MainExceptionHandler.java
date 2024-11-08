@@ -1,5 +1,6 @@
 package com.mkvbs.ingredient_management_service.exception;
 
+import com.mkvbs.ingredient_management_service.model.exception.EntityAlreadyExistsException;
 import com.mkvbs.ingredient_management_service.model.exception.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -29,5 +30,10 @@ public class MainExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleEntityNotFound(EntityNotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDetails(ex.getMessage()));
+    }
+
+    @ExceptionHandler(EntityAlreadyExistsException.class)
+    public ResponseEntity<ErrorDetails> handleEntityAlreadyExistsException(EntityAlreadyExistsException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new ErrorDetails(ex.getMessage()));
     }
 }
