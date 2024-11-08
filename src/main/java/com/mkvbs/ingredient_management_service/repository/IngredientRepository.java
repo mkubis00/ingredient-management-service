@@ -23,4 +23,5 @@ public interface IngredientRepository extends JpaRepository<Ingredient, UUID> {
     @Query("SELECT i.id FROM Ingredient i WHERE i.name = :ingredientName")
     Optional<UUID> findUuidByIngredientName(@Param("ingredientName") String ingredientName);
 
+    Optional<Ingredient> findByName(String name);
 }

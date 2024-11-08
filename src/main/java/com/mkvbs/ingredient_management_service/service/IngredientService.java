@@ -5,6 +5,7 @@ import com.mkvbs.ingredient_management_service.factory.provider.FactoryProvider;
 import com.mkvbs.ingredient_management_service.model.Ingredient;
 import com.mkvbs.ingredient_management_service.model.api.IngredientRequest;
 import com.mkvbs.ingredient_management_service.model.api.IngredientResponse;
+import com.mkvbs.ingredient_management_service.model.exception.EntityAlreadyExistsException;
 import com.mkvbs.ingredient_management_service.model.exception.EntityNotFoundException;
 import com.mkvbs.ingredient_management_service.repository.IngredientRepository;
 import org.springframework.stereotype.Service;
@@ -49,13 +50,17 @@ public class IngredientService {
     }
 
     public IngredientResponse saveIngredient(IngredientRequest ingredientRequest) {
+        if (isRecipeExists(ingredientRequest.getName())) {
+            throw new EntityAlreadyExistsException("Ingredient with name " + ingredientRequest.getName() + " already exists.");
+        }
         Ingredient ingredient = ingredientFactory.create(ingredientRequest);
         Ingredient savedIngredient = ingredientRepository.save(ingredient);
         return ingredientResponseFactory.create(savedIngredient);
     }
 
     public List<IngredientResponse> saveIngredientsList(List<IngredientRequest> ingredientList) {
-        List<Ingredient> ingredientsToSave = ingredientList.stream().map(ingredientFactory::create).toList();
+        List<Ingredient> ingredientsToCheck = ingredientList.stream().map(ingredientFactory::create).toList();
+        List<Ingredient> ingredientsToSave = ingredientsToCheck.stream().filter(ingredient -> !isRecipeExists(ingredient.getName())).toList();
         List<Ingredient> savedIngredients = ingredientRepository.saveAll(ingredientsToSave);
         return savedIngredients.stream().map(ingredientResponseFactory::create).toList();
     }
@@ -66,5 +71,9 @@ public class IngredientService {
 
     public void deleteAllIngredients() {
         ingredientRepository.deleteAll();
+    }
+
+    private boolean isRecipeExists(String name) {
+        return ingredientRepository.findByName(name).isPresent();
     }
 }
