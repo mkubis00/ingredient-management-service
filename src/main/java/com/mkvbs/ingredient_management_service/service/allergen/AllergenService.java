@@ -1,4 +1,4 @@
-package com.mkvbs.ingredient_management_service.service;
+package com.mkvbs.ingredient_management_service.service.allergen;
 
 import com.mkvbs.ingredient_management_service.model.Allergen;
 import com.mkvbs.ingredient_management_service.model.exception.EntityNotFoundException;

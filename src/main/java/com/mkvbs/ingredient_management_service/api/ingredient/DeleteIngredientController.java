@@ -1,6 +1,6 @@
 package com.mkvbs.ingredient_management_service.api.ingredient;
 
-import com.mkvbs.ingredient_management_service.service.IngredientService;
+import com.mkvbs.ingredient_management_service.service.ingredient.DeleteIngredientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class DeleteIngredientController {
 
-    private final IngredientService ingredientService;
+    private final DeleteIngredientService ingredientService;
 
     /**
      * Api method used to delete an instance of ingredient.

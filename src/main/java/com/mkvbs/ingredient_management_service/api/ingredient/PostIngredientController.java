@@ -2,7 +2,7 @@ package com.mkvbs.ingredient_management_service.api.ingredient;
 
 import com.mkvbs.ingredient_management_service.model.api.IngredientRequest;
 import com.mkvbs.ingredient_management_service.model.api.IngredientResponse;
-import com.mkvbs.ingredient_management_service.service.IngredientService;
+import com.mkvbs.ingredient_management_service.service.ingredient.PostIngredientService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PostIngredientController {
 
-    private final IngredientService ingredientService;
+    private final PostIngredientService ingredientService;
 
     /**
      * Api method used to create an instance of ingredient in database.

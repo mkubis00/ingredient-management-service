@@ -1,7 +1,7 @@
 package com.mkvbs.ingredient_management_service.api.ingredient;
 
 import com.mkvbs.ingredient_management_service.model.api.IngredientResponse;
-import com.mkvbs.ingredient_management_service.service.IngredientService;
+import com.mkvbs.ingredient_management_service.service.ingredient.GetIngredientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +18,7 @@ import java.util.UUID;
 @AllArgsConstructor
 public class GetIngredientController {
 
-    private final IngredientService ingredientService;
+    private final GetIngredientService getIngredientService;
 
     /**
      * Api method used to fetch ingredient object by its id.
@@ -27,7 +27,7 @@ public class GetIngredientController {
      */
     @GetMapping("/v1/get_ingredient/{uuid}")
     public ResponseEntity<IngredientResponse> getIngredientById(@PathVariable UUID uuid) {
-        IngredientResponse ingredient = ingredientService.getIngredientById(uuid);
+        IngredientResponse ingredient = getIngredientService.getIngredientById(uuid);
         return ResponseEntity.status(HttpStatus.OK).body(ingredient);
     }
 
@@ -38,7 +38,7 @@ public class GetIngredientController {
      */
     @GetMapping("/v1/get_all_ingredient")
     public ResponseEntity<List<IngredientResponse>> getAllIngredients() {
-        List<IngredientResponse> ingredients = ingredientService.findAllIngredients();
+        List<IngredientResponse> ingredients = getIngredientService.getAllIngredients();
         return ResponseEntity.status(HttpStatus.OK).body(ingredients);
     }
 
@@ -50,7 +50,7 @@ public class GetIngredientController {
      */
     @GetMapping("/v1/get_ingredients_from_uuid_list/{uuidList}")
     public ResponseEntity<List<IngredientResponse>> getIngredientsByIdsList(@PathVariable List<UUID> idsList) {
-        List<IngredientResponse> ingredients = ingredientService.getIngredientsByUuidList(idsList);
+        List<IngredientResponse> ingredients = getIngredientService.getIngredientsByUuidList(idsList);
         return ResponseEntity.status(HttpStatus.OK).body(ingredients);
     }
 
@@ -61,7 +61,7 @@ public class GetIngredientController {
      */
     @GetMapping("/v1/get_ingredient_by_name/{ingredientName}")
     public ResponseEntity<UUID> getIngredientIdtByName(@PathVariable String ingredientName) {
-        UUID ingredientIdWithName = ingredientService.getIngredientByName(ingredientName);
+        UUID ingredientIdWithName = getIngredientService.getIngredientByName(ingredientName);
         return ResponseEntity.status(HttpStatus.OK).body(ingredientIdWithName);
     }
 
@@ -73,7 +73,7 @@ public class GetIngredientController {
      */
     @GetMapping("/v1/get_ids_from_ingredient_name_list/{ingredientNames}")
     public ResponseEntity<List<UUID>> getIngredientsByIngredientsNames(@PathVariable List<String> ingredientNames) {
-        List<UUID> ingredientsUuids = ingredientService.findIngredientsWithNames(ingredientNames);
+        List<UUID> ingredientsUuids = getIngredientService.getIngredientsWithNames(ingredientNames);
         return ResponseEntity.status(HttpStatus.OK).body(ingredientsUuids);
     }
 }

@@ -1,4 +1,4 @@
-package com.mkvbs.ingredient_management_service.service;
+package com.mkvbs.ingredient_management_service.service.ingredient;
 
 import com.mkvbs.ingredient_management_service.factory.Factory;
 import com.mkvbs.ingredient_management_service.factory.provider.FactoryProvider;
@@ -6,47 +6,22 @@ import com.mkvbs.ingredient_management_service.model.Ingredient;
 import com.mkvbs.ingredient_management_service.model.api.IngredientRequest;
 import com.mkvbs.ingredient_management_service.model.api.IngredientResponse;
 import com.mkvbs.ingredient_management_service.model.exception.EntityAlreadyExistsException;
-import com.mkvbs.ingredient_management_service.model.exception.EntityNotFoundException;
 import com.mkvbs.ingredient_management_service.repository.IngredientRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.UUID;
 
 @Service
-public class IngredientService {
+public class PostIngredientService {
 
     private final IngredientRepository ingredientRepository;
     private final Factory<Ingredient, IngredientRequest> ingredientFactory;
     private final Factory<IngredientResponse, Ingredient> ingredientResponseFactory;
 
-    public IngredientService(IngredientRepository ingredientRepository, FactoryProvider defaultFactoryProvider) {
+    public PostIngredientService(IngredientRepository ingredientRepository, FactoryProvider defaultFactoryProvider) {
         this.ingredientRepository = ingredientRepository;
         this.ingredientFactory = defaultFactoryProvider.getIngredientFactory();
         this.ingredientResponseFactory = defaultFactoryProvider.getIngredientResponseFactory();
-    }
-
-    public List<IngredientResponse> getIngredientsByUuidList(List<UUID> uuids) {
-        List<Ingredient> ingredientList = ingredientRepository.findAllById(uuids);
-        return ingredientList.stream().map(ingredientResponseFactory::create).toList();
-    }
-
-    public IngredientResponse getIngredientById(UUID uuid) {
-        Ingredient ingredientToReturn = ingredientRepository.findById(uuid).orElseThrow(()-> new EntityNotFoundException("Recipe with id: " + uuid + " not found."));
-        return ingredientResponseFactory.create(ingredientToReturn);
-    }
-
-    public UUID getIngredientByName(String name) {
-        return ingredientRepository.findUuidByIngredientName(name).orElseThrow(()-> new EntityNotFoundException("Recipe with name: " + name + " not found."));
-    }
-
-    public List<IngredientResponse> findAllIngredients() {
-        List<Ingredient> ingredientsToReturn = ingredientRepository.findAll();
-        return ingredientsToReturn.stream().map(ingredientResponseFactory::create).toList();
-    }
-
-    public List<UUID> findIngredientsWithNames(List<String> names) {
-        return ingredientRepository.findUuidsByIngredientName(names).orElseThrow();
     }
 
     public IngredientResponse saveIngredient(IngredientRequest ingredientRequest) {
@@ -63,14 +38,6 @@ public class IngredientService {
         List<Ingredient> ingredientsToSave = ingredientsToCheck.stream().filter(ingredient -> !isRecipeExists(ingredient.getName())).toList();
         List<Ingredient> savedIngredients = ingredientRepository.saveAll(ingredientsToSave);
         return savedIngredients.stream().map(ingredientResponseFactory::create).toList();
-    }
-
-    public void deleteIngredient(UUID uuid) {
-        ingredientRepository.deleteById(uuid);
-    }
-
-    public void deleteAllIngredients() {
-        ingredientRepository.deleteAll();
     }
 
     private boolean isRecipeExists(String name) {

@@ -1,7 +1,7 @@
 package com.mkvbs.ingredient_management_service.api.allergen;
 
 import com.mkvbs.ingredient_management_service.model.Allergen;
-import com.mkvbs.ingredient_management_service.service.AllergenService;
+import com.mkvbs.ingredient_management_service.service.allergen.AllergenService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
