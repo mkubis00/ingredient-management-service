@@ -32,6 +32,10 @@ public class GetIngredientService {
         return ingredientResponseFactory.create(ingredientToReturn);
     }
 
+    public List<String> getIngredientsNamesSimilarToName(String similarName) {
+        return ingredientRepository.findTop10ByNameStartingWith(similarName).stream().map(Ingredient::getName).toList();
+    }
+
     public UUID getIngredientByName(String name) {
         return ingredientRepository.findUuidByIngredientName(name).orElseThrow(()-> new EntityNotFoundException("Recipe with name: " + name + " not found."));
     }

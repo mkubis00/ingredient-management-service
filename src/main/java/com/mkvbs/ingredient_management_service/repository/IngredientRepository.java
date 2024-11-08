@@ -24,4 +24,6 @@ public interface IngredientRepository extends JpaRepository<Ingredient, UUID> {
     Optional<UUID> findUuidByIngredientName(@Param("ingredientName") String ingredientName);
 
     Optional<Ingredient> findByName(String name);
+
+    List<Ingredient> findTop10ByNameStartingWith(String prefix);
 }

@@ -66,6 +66,17 @@ public class GetIngredientController {
     }
 
     /**
+     * Api method used to fetch ingredients objects with similar name.
+     * @param similarName fo fetch.
+     * @return ingredient
+     */
+    @GetMapping("/v1/get_ingredient_with_similar_name/{similarName}")
+    public ResponseEntity<List<String>> getIngredientsNamesSimilarToName(@PathVariable String similarName) {
+       List<String> names = getIngredientService.getIngredientsNamesSimilarToName(similarName);
+        return ResponseEntity.status(HttpStatus.OK).body(names);
+    }
+
+    /**
      * Api method that returns ids list of the recipes which names matches passed name list.
      * Typically used to return ids of the ingredients which are searched by user.
      * @param ingredientNames names of ingredients
