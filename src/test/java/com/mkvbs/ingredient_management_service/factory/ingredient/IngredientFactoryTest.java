@@ -14,7 +14,7 @@ class IngredientFactoryTest {
 
     Factory<Ingredient, IngredientRequest> ingredientFactory;
 
-    private static String NAME = "name";
+    private final static String NAME = "name";
 
     @BeforeEach
     void setUp() {

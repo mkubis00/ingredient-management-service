@@ -16,8 +16,8 @@ class IngredientResponseFactoryTest {
 
     private Factory<IngredientResponse, Ingredient> factory;
 
-    private static String NAME = "name";
-    private static UUID ID = UUID.randomUUID();
+    private final static String NAME = "name";
+    private final static UUID ID = UUID.randomUUID();
 
     @BeforeEach
     void setUp() {
