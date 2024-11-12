@@ -54,9 +54,8 @@ class PostIngredientServiceTest {
 
     @Test
     void testSaveAlreadyExistingIngredient() {
-        EntityAlreadyExistsException exception = assertThrows(EntityAlreadyExistsException.class, () -> {
-            postIngredientService.saveIngredient(ingredientRequest2);
-        });
+        EntityAlreadyExistsException exception = assertThrows(EntityAlreadyExistsException.class, () ->
+            postIngredientService.saveIngredient(ingredientRequest2));
         assertThat(exception.getMessage()).isEqualTo("Ingredient with name " + ingredientRequest2.getName() + " already exists.");
     }
 
