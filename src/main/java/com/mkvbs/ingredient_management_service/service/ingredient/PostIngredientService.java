@@ -1,28 +1,23 @@
 package com.mkvbs.ingredient_management_service.service.ingredient;
 
 import com.mkvbs.ingredient_management_service.factory.Factory;
-import com.mkvbs.ingredient_management_service.factory.provider.FactoryProvider;
 import com.mkvbs.ingredient_management_service.model.Ingredient;
 import com.mkvbs.ingredient_management_service.model.api.IngredientRequest;
 import com.mkvbs.ingredient_management_service.model.api.IngredientResponse;
 import com.mkvbs.ingredient_management_service.model.exception.EntityAlreadyExistsException;
 import com.mkvbs.ingredient_management_service.repository.IngredientRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class PostIngredientService {
 
     private final IngredientRepository ingredientRepository;
     private final Factory<Ingredient, IngredientRequest> ingredientFactory;
     private final Factory<IngredientResponse, Ingredient> ingredientResponseFactory;
-
-    public PostIngredientService(IngredientRepository ingredientRepository, FactoryProvider defaultFactoryProvider) {
-        this.ingredientRepository = ingredientRepository;
-        this.ingredientFactory = defaultFactoryProvider.getIngredientFactory();
-        this.ingredientResponseFactory = defaultFactoryProvider.getIngredientResponseFactory();
-    }
 
     public IngredientResponse saveIngredient(IngredientRequest ingredientRequest) {
         if (isRecipeExists(ingredientRequest.getName())) {

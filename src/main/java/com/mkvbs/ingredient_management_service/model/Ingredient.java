@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -15,6 +16,7 @@ import java.util.UUID;
 @Table(name = "ingredient")
 @Getter
 @NoArgsConstructor(force = true, access = AccessLevel.PROTECTED)
+@AllArgsConstructor
 public class Ingredient {
 
     @Id

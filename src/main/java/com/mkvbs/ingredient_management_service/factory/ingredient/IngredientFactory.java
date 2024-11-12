@@ -3,7 +3,9 @@ package com.mkvbs.ingredient_management_service.factory.ingredient;
 import com.mkvbs.ingredient_management_service.factory.Factory;
 import com.mkvbs.ingredient_management_service.model.Ingredient;
 import com.mkvbs.ingredient_management_service.model.api.IngredientRequest;
+import org.springframework.stereotype.Component;
 
+@Component
 public class IngredientFactory implements Factory<Ingredient, IngredientRequest> {
 
     @Override
