@@ -1,6 +1,7 @@
-package com.mkvbs.ingredient_management_service.factory.ingredient;
+package com.mkvbs.ingredient_management_service.unit_tests.ingredient.factory;
 
 import com.mkvbs.ingredient_management_service.factory.Factory;
+import com.mkvbs.ingredient_management_service.factory.ingredient.IngredientFactory;
 import com.mkvbs.ingredient_management_service.model.Allergen;
 import com.mkvbs.ingredient_management_service.model.Ingredient;
 import com.mkvbs.ingredient_management_service.model.TypeOfQuantity;

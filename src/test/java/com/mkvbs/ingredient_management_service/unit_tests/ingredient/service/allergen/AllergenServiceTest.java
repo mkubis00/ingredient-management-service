@@ -1,7 +1,8 @@
-package com.mkvbs.ingredient_management_service.service.allergen;
+package com.mkvbs.ingredient_management_service.unit_tests.ingredient.service.allergen;
 
 import com.mkvbs.ingredient_management_service.model.Allergen;
 import com.mkvbs.ingredient_management_service.repository.IngredientRepository;
+import com.mkvbs.ingredient_management_service.service.allergen.AllergenService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

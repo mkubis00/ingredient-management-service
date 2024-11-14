@@ -1,4 +1,4 @@
-package com.mkvbs.ingredient_management_service.service.ingredient;
+package com.mkvbs.ingredient_management_service.unit_tests.ingredient.service.ingredient;
 
 import com.mkvbs.ingredient_management_service.factory.Factory;
 import com.mkvbs.ingredient_management_service.factory.ingredient.IngredientFactory;
@@ -10,6 +10,7 @@ import com.mkvbs.ingredient_management_service.model.api.IngredientRequest;
 import com.mkvbs.ingredient_management_service.model.api.IngredientResponse;
 import com.mkvbs.ingredient_management_service.model.exception.EntityAlreadyExistsException;
 import com.mkvbs.ingredient_management_service.repository.IngredientRepository;
+import com.mkvbs.ingredient_management_service.service.ingredient.PostIngredientService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
