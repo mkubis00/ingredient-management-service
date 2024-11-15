@@ -14,8 +14,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 		"/sql_test_queries/post_ingredient_controller_test.sql"})
 class IngredientManagementServiceApplicationTests extends BasicIntegrationTest {
 
-	@Autowired
-	private MockMvc mockMvc;
 
 	@Test
 	void contextLoads() throws Exception {
