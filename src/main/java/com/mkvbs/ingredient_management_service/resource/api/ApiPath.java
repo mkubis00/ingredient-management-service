@@ -1,4 +1,4 @@
-package com.mkvbs.ingredient_management_service.api.resource;
+package com.mkvbs.ingredient_management_service.resource.api;
 
 public class ApiPath {
 

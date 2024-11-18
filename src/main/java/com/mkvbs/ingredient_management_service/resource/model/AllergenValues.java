@@ -1,4 +1,4 @@
-package com.mkvbs.ingredient_management_service.model.resources;
+package com.mkvbs.ingredient_management_service.resource.model;
 
 public final class AllergenValues {
 
@@ -28,4 +28,5 @@ public final class AllergenValues {
     public final static String LUPINE = "Łubin i produkty pochodne.";
     public final static String MOLLUSKS = "Mięczaki i produkty pochodne.\n" +
                      "(1) Oraz produkty pochodne, o ile obróbka, jakiej je poddano, najprawdopodobniej nie wpływa na zwiększenie alergenności, ocenionej przez właściwy organ w odniesieniu do produktu, z którego powstały.";
+    public final static String NONE = "Brak alergenów";
 }

@@ -1,11 +1,11 @@
 INSERT INTO ingredient (id, name, type_of_quantity, allergen)
-VALUES ('dad66e32-925c-4fe6-a923-a88c9b60e0d4', 'name', 1, 0);
+VALUES ('dad66e32-925c-4fe6-a923-a88c9b60e0d4', 'long name', 1, 0);
 
 INSERT INTO ingredient (id, name, type_of_quantity, allergen)
 VALUES ('dad56e32-925c-4fe6-a923-a88c9b60e0d4', 'name', 1, 0);
 
 INSERT INTO ingredient (id, name, type_of_quantity, allergen)
-VALUES (gen_random_uuid(), 'name1', 1, 0);
+VALUES ('cbd56e32-925c-4fe7-a923-a67c9b60e0d4', 'name1', 1, 0);
 
 INSERT INTO ingredient (id, name, type_of_quantity, allergen)
 VALUES (gen_random_uuid(), 'name2', 1, 0);

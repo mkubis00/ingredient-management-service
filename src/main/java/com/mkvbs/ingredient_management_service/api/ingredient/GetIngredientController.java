@@ -1,7 +1,7 @@
 package com.mkvbs.ingredient_management_service.api.ingredient;
 
-import com.mkvbs.ingredient_management_service.api.resource.ApiPath;
 import com.mkvbs.ingredient_management_service.model.api.IngredientResponse;
+import com.mkvbs.ingredient_management_service.resource.api.ApiPath;
 import com.mkvbs.ingredient_management_service.service.ingredient.GetIngredientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

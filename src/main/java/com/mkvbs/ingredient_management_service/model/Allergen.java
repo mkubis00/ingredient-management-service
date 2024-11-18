@@ -1,6 +1,6 @@
 package com.mkvbs.ingredient_management_service.model;
 
-import com.mkvbs.ingredient_management_service.model.resources.AllergenValues;
+import com.mkvbs.ingredient_management_service.resource.model.AllergenValues;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +19,8 @@ public enum Allergen {
     MUSTARD(AllergenValues.MUSTARD),
     SESAME(AllergenValues.SESAME),
     LUPINE(AllergenValues.LUPINE),
-    MOLLUSKS(AllergenValues.MOLLUSKS);
+    MOLLUSKS(AllergenValues.MOLLUSKS),
+    NONE(AllergenValues.NONE);
 
     private final String allergenDescription;
 }

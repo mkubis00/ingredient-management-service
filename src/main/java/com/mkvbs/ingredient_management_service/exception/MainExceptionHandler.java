@@ -2,24 +2,37 @@ package com.mkvbs.ingredient_management_service.exception;
 
 import com.mkvbs.ingredient_management_service.model.exception.EntityAlreadyExistsException;
 import com.mkvbs.ingredient_management_service.model.exception.EntityNotFoundException;
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.ConstraintViolationException;
+import com.mkvbs.ingredient_management_service.resource.api.ValidationMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
-@ControllerAdvice
-public class MainExceptionHandler extends ResponseEntityExceptionHandler {
+@RestControllerAdvice
+public class MainExceptionHandler {
 
-    @ExceptionHandler(ConstraintViolationException.class)
-    public ResponseEntity<ErrorDetails> handleMethodArgumentNotValid(ConstraintViolationException ex) {
-        String errorMessage = ex.getConstraintViolations().stream().map(ConstraintViolation::getMessage).collect(Collectors.joining(", "));
-        ErrorDetails errorDetails = new ErrorDetails("Invalid arguments. " + errorMessage);
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorDetails> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
+        Map<String, String> validationErrors = new HashMap<>();
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                validationErrors.put(error.getField(), error.getDefaultMessage())
+        );
+        StringBuilder validationError = new StringBuilder();
+        for (Map.Entry<String, String> entry : validationErrors.entrySet()) {
+            validationError.append(entry.getKey()).append(" - ").append(entry.getValue()).append(". ");
+        }
+        ErrorDetails errorDetails = new ErrorDetails("Invalid arguments: " + validationError);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
+    }
+
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public ResponseEntity<ErrorDetails> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDetails(ValidationMessage.HTTP_MESSAGE_NOT_READABLE));
     }
 
     @ExceptionHandler(RuntimeException.class)
