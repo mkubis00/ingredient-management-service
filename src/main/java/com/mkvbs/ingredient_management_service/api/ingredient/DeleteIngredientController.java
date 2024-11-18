@@ -19,12 +19,12 @@ public class DeleteIngredientController {
 
     /**
      * Api method used to delete an instance of ingredient.
-     * @param uuid of the ingredient to delete
+     * @param id of the ingredient to delete
      * @return void
      */
     @DeleteMapping(ApiPath.INGREDIENT.DELETE_V1)
-    public ResponseEntity<Void> deleteIngredientById(@PathVariable UUID uuid) {
-        ingredientService.deleteIngredient(uuid);
+    public ResponseEntity<Void> deleteIngredientById(@PathVariable UUID id) {
+        ingredientService.deleteIngredient(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 

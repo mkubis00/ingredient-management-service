@@ -22,6 +22,8 @@ public class ApiPath {
         public static final String GET_FROM_ID_LIST_V1 = BASE_V1 + "/from_id_list/{idsList}";
         public static final String GET_INGREDIENT_ID_BY_NAME_V1 = BASE_V1 + "/id_by_name/{ingredientName}";
         public static final String GET_LIST_WITH_SIMILAR_NAME_V1 = BASE_V1 + "/with_similar_name/{similarName}";
+
+        public static final String TEST_V1 = BASE_V1 + "/";
     }
 
     public static class ALLERGEN {
