@@ -31,12 +31,12 @@ public class MainExceptionHandler {
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public ResponseEntity<ErrorDetails> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+    public ResponseEntity<ErrorDetails> handleHttpMessageNotReadableException() {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDetails(ValidationMessage.HTTP_MESSAGE_NOT_READABLE));
     }
 
     @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<ErrorDetails> handleRuntimeException(final RuntimeException e) {
+    public ResponseEntity<ErrorDetails> handleRuntimeException() {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
     }
 
