@@ -22,3 +22,6 @@ VALUES (gen_random_uuid(), 'pepper', 1, 0);
 INSERT INTO ingredient (id, name, type_of_quantity, allergen)
 VALUES (gen_random_uuid(), 'milk', 1, 0);
 
+INSERT INTO ingredient (id, name, type_of_quantity, allergen)
+VALUES (gen_random_uuid(), 'nara', 1, 0);
+

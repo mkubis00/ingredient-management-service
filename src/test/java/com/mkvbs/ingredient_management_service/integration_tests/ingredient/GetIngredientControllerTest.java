@@ -7,9 +7,12 @@ import org.junit.jupiter.api.Test;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
 @Sql(scripts = {
@@ -26,7 +29,7 @@ public class GetIngredientControllerTest extends BasicIntegrationTest {
         try {
             mockMvc.perform(get(ApiPath.INGREDIENT.GET_ALL_V1))
                     .andExpect(MockMvcResultMatchers.status().isOk())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_LENGTH).value(8));
+                    .andExpect(jsonPath(TestStringTemplates.JSON_LENGTH).value(9));
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
         }
@@ -49,7 +52,7 @@ public class GetIngredientControllerTest extends BasicIntegrationTest {
     @Test
     void testGetIngredientByIdNotFound() {
         try {
-            mockMvc.perform(get(ApiPath.INGREDIENT.BASE_V1 + "/" + ID_OF_NOT_SAVED_INGREDIENT))
+            mockMvc.perform(get(ApiPath.INGREDIENT.TEST_V1 + ID_OF_NOT_SAVED_INGREDIENT))
                     .andExpect(MockMvcResultMatchers.status().isNotFound())
                     .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value("Recipe with id: " + ID_OF_NOT_SAVED_INGREDIENT + " not found."));
         } catch (Exception e) {
@@ -58,10 +61,55 @@ public class GetIngredientControllerTest extends BasicIntegrationTest {
     }
 
     @Test
-    public void testGetIngredientsListContainsSpecificIds() throws Exception {
-        mockMvc.perform(get(ApiPath.INGREDIENT.BASE_V1 + "/from_id_list/" + ID_OF_SAVED_INGREDIENT_1 + "," + ID_OF_SAVED_INGREDIENT_2 + "," + ID_OF_NOT_SAVED_INGREDIENT))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(jsonPath(TestStringTemplates.JSON_LENGTH).value(2))
-                .andExpect(jsonPath("$[*].id").value(hasItems(ID_OF_SAVED_INGREDIENT_1, ID_OF_SAVED_INGREDIENT_2)));
+    public void testGetIngredientsListContainsSpecificIds() {
+        try {
+            mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_FROM_ID_LIST_V1 + ID_OF_SAVED_INGREDIENT_1 + "," + ID_OF_SAVED_INGREDIENT_2 + "," + ID_OF_NOT_SAVED_INGREDIENT))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andExpect(jsonPath(TestStringTemplates.JSON_LENGTH).value(2))
+                    .andExpect(jsonPath("$[*].id").value(hasItems(ID_OF_SAVED_INGREDIENT_1, ID_OF_SAVED_INGREDIENT_2)));
+        } catch (Exception e) {
+            fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetIngredientIdtByNameWithExistingIngredient() {
+        try {
+            mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_INGREDIENT_ID_BY_NAME_V1 + "name"))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andExpect(content().string("\"" + ID_OF_SAVED_INGREDIENT_1 + "\""));
+        } catch (Exception e) {
+            fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetIngredientIdtByNameWithOutExistingIngredient() {
+        try {
+            mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_INGREDIENT_ID_BY_NAME_V1 + "notExistingNAme"))
+                    .andExpect(MockMvcResultMatchers.status().isNotFound())
+                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value("Recipe with name: notExistingNAme not found."));
+        } catch (Exception e) {
+            fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
+        }
+    }
+
+    @Test
+    public void testGetIngredientsNamesSimilarToName() {
+        try {
+            mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_LIST_WITH_SIMILAR_NAME_V1 + "nam"))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andExpect(jsonPath("$").isArray())
+                    .andExpect(jsonPath("$", hasSize(5)))
+                    .andExpect(jsonPath("$", containsInAnyOrder("name", "name1", "name2", "name3", "name4")));
+
+            mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_LIST_WITH_SIMILAR_NAME_V1 + "na"))
+                    .andExpect(MockMvcResultMatchers.status().isOk())
+                    .andExpect(jsonPath("$").isArray())
+                    .andExpect(jsonPath("$", hasSize(6)))
+                    .andExpect(jsonPath("$", containsInAnyOrder("name", "name1", "name2", "name3", "name4", "nara")));
+        } catch (Exception e) {
+            fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
+        }
     }
 }
