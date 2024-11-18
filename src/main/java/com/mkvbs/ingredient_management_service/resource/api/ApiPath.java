@@ -36,5 +36,7 @@ public class ApiPath {
         public static final String GET_DESCRIPTION_V1 = BASE_V1 + "/description/{allergen}";
         public static final String GET_FROM_INGREDIENTS_IDS_V1 = BASE_V1 + "/from_ingredients_ids/{ingredientsIds}";
 
+        public static final String TEST_GET_DESCRIPTION_V1 = BASE_V1 + "/description/";
+        public static final String TEST_GET_FROM_INGREDIENTS_IDS_V1 = BASE_V1 + "/from_ingredients_ids/";
     }
 }
