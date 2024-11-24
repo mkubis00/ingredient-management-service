@@ -28,15 +28,15 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
         "/sql_test_queries/post_ingredient_controller_test.sql"})
 public class PostIngredientControllerTest extends BasicIntegration {
 
-    private final static String NOT_SAVED_INGREDIENT_NAME = "chicken";
-    private final static String ALREADY_SAVED_INGREDIENT_NAME = "egg";
-    private final static String INCORRECT_NAME = "ab";
-    private final static String NAME = "name";
-    private final static String ALLERGEN = "allergen";
-    private final static String TYPE_OF_QUANTITY = "typeOfQuantity";
-    private final static String NONE = "NONE";
-    private final static TypeOfQuantity PROPER_TYPE = TypeOfQuantity.NONE;
-    private final static Allergen PROPER_ALLERGEN = Allergen.EGG;
+    private static final String NOT_SAVED_INGREDIENT_NAME = "chicken";
+    private static final String ALREADY_SAVED_INGREDIENT_NAME = "egg";
+    private static final String INCORRECT_NAME = "ab";
+    private static final String NAME = "name";
+    private static final String ALLERGEN = "allergen";
+    private static final String TYPE_OF_QUANTITY = "typeOfQuantity";
+    private static final String NONE = "NONE";
+    private static final TypeOfQuantity PROPER_TYPE = TypeOfQuantity.NONE;
+    private static final Allergen PROPER_ALLERGEN = Allergen.EGG;
 
     private final IngredientRequest ingredientRequest1;
     private final IngredientRequest ingredientRequest2;
