@@ -1,6 +1,6 @@
 package com.mkvbs.ingredient_management_service.integration_tests.ingredient;
 
-import com.mkvbs.ingredient_management_service.integration_tests.BasicIntegrationTest;
+import com.mkvbs.ingredient_management_service.integration_tests.BasiccIntegrationTest;
 import com.mkvbs.ingredient_management_service.integration_tests.TestStringTemplates;
 import com.mkvbs.ingredient_management_service.resource.api.ApiPath;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(scripts = {
         "/sql_test_queries/clean_database.sql",
         "/sql_test_queries/get_ingredient_controller_test.sql"})
-public class GetIngredientControllerTest extends BasicIntegrationTest {
+public class GetIngredientControllerTest extends BasiccIntegrationTest {
 
     private static final String ID_OF_SAVED_INGREDIENT_1 = "dad56e32-925c-4fe6-a923-a88c9b60e0d4";
     private static final String ID_OF_SAVED_INGREDIENT_2 = "cbd56e32-925c-4fe7-a923-a67c9b60e0d4";

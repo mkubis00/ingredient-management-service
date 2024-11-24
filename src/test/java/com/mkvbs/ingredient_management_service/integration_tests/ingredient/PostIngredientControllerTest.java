@@ -1,7 +1,7 @@
 package com.mkvbs.ingredient_management_service.integration_tests.ingredient;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mkvbs.ingredient_management_service.integration_tests.BasicIntegrationTest;
+import com.mkvbs.ingredient_management_service.integration_tests.BasiccIntegrationTest;
 import com.mkvbs.ingredient_management_service.integration_tests.TestStringTemplates;
 import com.mkvbs.ingredient_management_service.model.Allergen;
 import com.mkvbs.ingredient_management_service.model.TypeOfQuantity;
@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(scripts = {
         "/sql_test_queries/clean_database.sql",
         "/sql_test_queries/post_ingredient_controller_test.sql"})
-public class PostIngredientControllerTest extends BasicIntegrationTest {
+public class PostIngredientControllerTest extends BasiccIntegrationTest {
 
     private final static String NOT_SAVED_INGREDIENT_NAME = "chicken";
     private final static String ALREADY_SAVED_INGREDIENT_NAME = "egg";

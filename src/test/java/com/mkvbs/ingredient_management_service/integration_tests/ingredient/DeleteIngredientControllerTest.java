@@ -1,6 +1,6 @@
 package com.mkvbs.ingredient_management_service.integration_tests.ingredient;
 
-import com.mkvbs.ingredient_management_service.integration_tests.BasicIntegrationTest;
+import com.mkvbs.ingredient_management_service.integration_tests.BasiccIntegrationTest;
 import com.mkvbs.ingredient_management_service.integration_tests.TestStringTemplates;
 import com.mkvbs.ingredient_management_service.resource.api.ApiPath;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @Sql(scripts = {
         "/sql_test_queries/clean_database.sql",
         "/sql_test_queries/delete_ingredient_controller_test.sql"})
-public class DeleteIngredientControllerTest extends BasicIntegrationTest {
+public class DeleteIngredientControllerTest extends BasiccIntegrationTest {
 
     private static final String ID_TO_DELETE_1 = "dad56e32-925c-4fe6-a923-a88c9b60e0d4";
     private static final String ID_TO_DELETE_2 = "c4c56e32-925c-4fe6-a923-a88c9b60e0b5";

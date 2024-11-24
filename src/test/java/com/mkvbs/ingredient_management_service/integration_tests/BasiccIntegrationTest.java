@@ -8,13 +8,12 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.testcontainers.containers.PostgreSQLContainer;
 
-
 import java.util.List;
 
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
-public class BasicIntegrationTest {
+public class BasiccIntegrationTest {
 
     @Autowired
     protected MockMvc mockMvc;
