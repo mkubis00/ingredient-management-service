@@ -1,6 +1,6 @@
 package com.mkvbs.ingredient_management_service.integration_tests.allergen;
 
-import com.mkvbs.ingredient_management_service.integration_tests.BasicIntegrationTest;
+import com.mkvbs.ingredient_management_service.integration_tests.BasicIntegration;
 import com.mkvbs.ingredient_management_service.integration_tests.TestStringTemplates;
 import com.mkvbs.ingredient_management_service.resource.api.ApiPath;
 import com.mkvbs.ingredient_management_service.resource.model.AllergenValues;
@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(scripts = {
         "/sql_test_queries/clean_database.sql",
         "/sql_test_queries/allergen_controller_test.sql"})
-public class AllergenControllerTest extends BasicIntegrationTest {
+public class AllergenControllerTest extends BasicIntegration {
 
     @Test
     public void testGetAllergenDescription() {
