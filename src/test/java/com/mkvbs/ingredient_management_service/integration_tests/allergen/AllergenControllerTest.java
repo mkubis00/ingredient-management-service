@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class AllergenControllerTest extends BasicIntegration {
 
     @Test
-    public void testGetAllergenDescription() {
+    void testGetAllergenDescription() {
         try {
             mockMvc.perform(get(ApiPath.ALLERGEN.TEST_GET_DESCRIPTION_V1 + "NONE"))
                     .andExpect(MockMvcResultMatchers.status().isOk())
@@ -32,7 +32,7 @@ public class AllergenControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testGetAllergensFromIngredients() {
+    void testGetAllergensFromIngredients() {
         try {
             String id1 = "aad56e32-925c-4fe6-a923-a88c9b60e0d4";
             String id2 = "bad56e32-925c-4fe6-a923-a88c9b60e0d5";

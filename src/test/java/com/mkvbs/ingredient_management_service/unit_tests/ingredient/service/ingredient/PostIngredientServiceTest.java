@@ -65,7 +65,7 @@ class PostIngredientServiceTest {
         List<IngredientRequest> ingredientRequestList = List.of(ingredientRequest1, ingredientRequest2);
         List<IngredientResponse> ingredientResponses = postIngredientService.saveIngredientsList(ingredientRequestList);
 
-        assertThat(ingredientResponses.size()).isEqualTo(1);
+        assertThat(ingredientResponses).hasSize(1);
         assertThat(ingredientResponses.get(0).getName()).isEqualTo(NOT_SAVED_INGREDIENT_NAME);
     }
 

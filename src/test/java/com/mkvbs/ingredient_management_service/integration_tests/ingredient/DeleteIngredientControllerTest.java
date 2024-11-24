@@ -20,7 +20,7 @@ public class DeleteIngredientControllerTest extends BasicIntegration {
     private static final String ID_TO_DELETE_2 = "c4c56e32-925c-4fe6-a923-a88c9b60e0b5";
 
     @Test
-    public void testDeleteIngredientById() {
+    void testDeleteIngredientById() {
         try {
             mockMvc.perform(delete(ApiPath.INGREDIENT.TEST_V1 + ID_TO_DELETE_1))
                     .andExpect(MockMvcResultMatchers.status().isNoContent());

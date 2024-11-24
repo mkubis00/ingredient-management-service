@@ -61,7 +61,7 @@ public class GetIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testGetIngredientsListContainsSpecificIds() {
+    void testGetIngredientsListContainsSpecificIds() {
         try {
             mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_FROM_ID_LIST_V1 + ID_OF_SAVED_INGREDIENT_1 + "," + ID_OF_SAVED_INGREDIENT_2 + "," + ID_OF_NOT_SAVED_INGREDIENT))
                     .andExpect(MockMvcResultMatchers.status().isOk())
@@ -73,7 +73,7 @@ public class GetIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testGetIngredientIdtByNameWithExistingIngredient() {
+    void testGetIngredientIdtByNameWithExistingIngredient() {
         try {
             mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_INGREDIENT_ID_BY_NAME_V1 + "name"))
                     .andExpect(MockMvcResultMatchers.status().isOk())
@@ -84,7 +84,7 @@ public class GetIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testGetIngredientIdtByNameWithOutExistingIngredient() {
+    void testGetIngredientIdtByNameWithOutExistingIngredient() {
         try {
             mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_INGREDIENT_ID_BY_NAME_V1 + "notExistingNAme"))
                     .andExpect(MockMvcResultMatchers.status().isNotFound())
@@ -95,7 +95,7 @@ public class GetIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testGetIngredientsNamesSimilarToName() {
+    void testGetIngredientsNamesSimilarToName() {
         try {
             mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_LIST_WITH_SIMILAR_NAME_V1 + "nam"))
                     .andExpect(MockMvcResultMatchers.status().isOk())

@@ -50,7 +50,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientWithNotExistingIngredient() {
+    void testPostIngredientWithNotExistingIngredient() {
         try {
             String jsonIngredient = objectMapper.writeValueAsString(ingredientRequest1);
 
@@ -68,7 +68,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientWithExistingIngredient() {
+    void testPostIngredientWithExistingIngredient() {
         try {
             String jsonIngredient = objectMapper.writeValueAsString(ingredientRequest2);
 
@@ -84,7 +84,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientWithOutProperName() {
+    void testPostIngredientWithOutProperName() {
         try {
             IngredientRequest ingRequest = new IngredientRequest(INCORRECT_NAME, PROPER_TYPE, PROPER_ALLERGEN);
             String jsonIngredient = objectMapper.writeValueAsString(ingRequest);
@@ -101,7 +101,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientWithOutAllergen() {
+    void testPostIngredientWithOutAllergen() {
         try {
             Map<String, String> request = new HashMap<>();
             request.put(NAME, NOT_SAVED_INGREDIENT_NAME);
@@ -120,7 +120,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientWithOutTypeOfQuantity() {
+    void testPostIngredientWithOutTypeOfQuantity() {
         try {
             Map<String, String> request = new HashMap<>();
             request.put(NAME, NOT_SAVED_INGREDIENT_NAME);
@@ -139,7 +139,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientWithAllPropertiesWrong() {
+    void testPostIngredientWithAllPropertiesWrong() {
         try {
             Map<String, String> request = new HashMap<>();
             request.put(NAME, INCORRECT_NAME);
@@ -159,7 +159,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientWithNoExistingProperty() {
+    void testPostIngredientWithNoExistingProperty() {
         try {
             Map<String, String> request = new HashMap<>();
             request.put(NAME, NOT_SAVED_INGREDIENT_NAME);
@@ -180,7 +180,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientWithNullArgumentInRequest() {
+    void testPostIngredientWithNullArgumentInRequest() {
         try {
             Map<String, String> request = new HashMap<>();
             request.put(NAME, NOT_SAVED_INGREDIENT_NAME);
@@ -199,7 +199,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientListWithExistingIngredient() {
+    void testPostIngredientListWithExistingIngredient() {
         try {
             List<IngredientRequest> ingredientList = List.of(ingredientRequest1, ingredientRequest2);
             String jsonIngredient = objectMapper.writeValueAsString(ingredientList);
@@ -215,7 +215,7 @@ public class PostIngredientControllerTest extends BasicIntegration {
     }
 
     @Test
-    public void testPostIngredientListWithOnlyExistingIngredient() {
+    void testPostIngredientListWithOnlyExistingIngredient() {
         try {
             List<IngredientRequest> ingredientList = List.of(ingredientRequest2);
             String jsonIngredient = objectMapper.writeValueAsString(ingredientList);
