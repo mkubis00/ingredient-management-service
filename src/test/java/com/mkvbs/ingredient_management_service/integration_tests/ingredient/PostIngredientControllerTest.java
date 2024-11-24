@@ -26,7 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(scripts = {
         "/sql_test_queries/clean_database.sql",
         "/sql_test_queries/post_ingredient_controller_test.sql"})
-public class PostIngredientControllerTest extends BasicIntegration {
+class PostIngredientControllerTest extends BasicIntegration {
 
     private static final String NOT_SAVED_INGREDIENT_NAME = "chicken";
     private static final String ALREADY_SAVED_INGREDIENT_NAME = "egg";

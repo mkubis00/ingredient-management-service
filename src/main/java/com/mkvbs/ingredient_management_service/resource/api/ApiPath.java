@@ -1,5 +1,8 @@
 package com.mkvbs.ingredient_management_service.resource.api;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 public class ApiPath {
 
     private static final String ID = "/{id}";
@@ -7,6 +10,7 @@ public class ApiPath {
     public static final String API_BASE = "/api";
     public static final String API_VERSION_V1 = API_BASE + "/v1";
 
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class INGREDIENT {
 
         public static final String BASE_V1 = API_VERSION_V1 + "/ingredients";
@@ -29,6 +33,7 @@ public class ApiPath {
         public static final String TEST_GET_LIST_WITH_SIMILAR_NAME_V1 = BASE_V1 + "/with_similar_name/";
     }
 
+    @NoArgsConstructor(access = AccessLevel.PRIVATE)
     public static class ALLERGEN {
 
         public static final String BASE_V1 = API_VERSION_V1 + "/allergens";

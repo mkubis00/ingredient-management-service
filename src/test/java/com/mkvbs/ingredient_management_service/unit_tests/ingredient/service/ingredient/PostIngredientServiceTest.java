@@ -41,8 +41,8 @@ class PostIngredientServiceTest {
     private Ingredient ingredient1WithId;
     private Ingredient ingredient2WithId;
 
-    private final String NOT_SAVED_INGREDIENT_NAME = "notSavedIngredientName";
-    private final String ALREADY_SAVED_INGREDIENT_NAME = "alreadySavedIngredientName";
+    private static final String NOT_SAVED_INGREDIENT_NAME = "notSavedIngredientName";
+    private static final String ALREADY_SAVED_INGREDIENT_NAME = "alreadySavedIngredientName";
 
     @Test
     void testSaveNewIngredient() {

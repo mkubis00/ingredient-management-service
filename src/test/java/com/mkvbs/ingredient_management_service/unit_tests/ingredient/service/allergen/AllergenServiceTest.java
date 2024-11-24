@@ -35,7 +35,7 @@ class AllergenServiceTest {
     void getAllergensListByIngredientsIdList() {
         List<Allergen> allergens = allergenService.getAllergensListByIngredientsIdList(uuidList);
 
-        assertThat(allergens.size()).isEqualTo(3);
+        assertThat(allergens).hasSize(3);
         assertThat(allergens).contains(Allergen.EGG, Allergen.CELERY, Allergen.FISH);
     }
 

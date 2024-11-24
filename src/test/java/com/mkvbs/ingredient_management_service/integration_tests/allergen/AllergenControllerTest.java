@@ -18,7 +18,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Sql(scripts = {
         "/sql_test_queries/clean_database.sql",
         "/sql_test_queries/allergen_controller_test.sql"})
-public class AllergenControllerTest extends BasicIntegration {
+class AllergenControllerTest extends BasicIntegration {
 
     @Test
     void testGetAllergenDescription() {

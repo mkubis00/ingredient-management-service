@@ -14,7 +14,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 @Sql(scripts = {
         "/sql_test_queries/clean_database.sql",
         "/sql_test_queries/delete_ingredient_controller_test.sql"})
-public class DeleteIngredientControllerTest extends BasicIntegration {
+class DeleteIngredientControllerTest extends BasicIntegration {
 
     private static final String ID_TO_DELETE_1 = "dad56e32-925c-4fe6-a923-a88c9b60e0d4";
     private static final String ID_TO_DELETE_2 = "c4c56e32-925c-4fe6-a923-a88c9b60e0b5";
