@@ -13,6 +13,7 @@ import java.util.List;
 @SpringBootTest
 @ActiveProfiles("test")
 @AutoConfigureMockMvc
+
 public class BasicIntegration {
 
     @Autowired
