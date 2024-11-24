@@ -30,6 +30,8 @@
 		<java.version>18</java.version>
 		<sonar.organization>mkubis00</sonar.organization>
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/jacoco-report/jacoco.xml
+		</sonar.coverage.jacoco.xmlReportPaths>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -118,6 +120,11 @@
 			<version>1.19.0</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.jacoco</groupId>
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.12</version>
+		</dependency>
 
 	</dependencies>
 
@@ -143,13 +150,22 @@
 				<version>0.8.12</version>
 				<executions>
 					<execution>
+						<id>prepare-agent</id>
 						<goals>
-							<goal>prepare-agent</goal> <!-- Ensure agent is preparing -->
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
 							<goal>report</goal>
 						</goals>
-						<phase>test</phase>
 					</execution>
 				</executions>
+				<configuration>
+					<outputDirectory>${project.build.directory}/jacoco-report</outputDirectory>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
