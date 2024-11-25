@@ -1,10 +1,10 @@
 package com.mkvbs.ingredient_management_service.exception;
 
-import lombok.Data;
+import lombok.Getter;
 
 import java.time.LocalDateTime;
 
-@Data
+@Getter
 public class ErrorDetails {
 
     private final LocalDateTime timestamp;
