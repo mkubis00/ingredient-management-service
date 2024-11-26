@@ -3,6 +3,7 @@ package com.mkvbs.ingredient_management_service.resource.api;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ApiPath {
 
     private static final String ID = "/{id}";
