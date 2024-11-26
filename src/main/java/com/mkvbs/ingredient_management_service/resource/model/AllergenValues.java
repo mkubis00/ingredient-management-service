@@ -1,5 +1,9 @@
 package com.mkvbs.ingredient_management_service.resource.model;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class AllergenValues {
 
     public static final String GLUTEN = "Zboża zawierające gluten, tj. pszenica (w tym orkisz i pszenica khorasan), żyto, jęczmień, owies lub ich odmiany hybrydowe, a także produkty pochodne, z wyjątkiem:\n" +

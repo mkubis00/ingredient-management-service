@@ -1,5 +1,9 @@
 package com.mkvbs.ingredient_management_service.resource.api;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ValidationMessage {
 
     public static final String INCORRECT_NAME_LEN = "name must be between 3 and 50 characters";
