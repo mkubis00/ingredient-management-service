@@ -1,8 +1,10 @@
 package com.mkvbs.ingredient_management_service.exception;
 
+import com.mkvbs.ingredient_management_service.factory.ErrorDetailsFactory;
 import com.mkvbs.ingredient_management_service.model.exception.EntityAlreadyExistsException;
 import com.mkvbs.ingredient_management_service.model.exception.EntityNotFoundException;
 import com.mkvbs.ingredient_management_service.resource.api.ValidationMessage;
+import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -14,7 +16,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestControllerAdvice
+@AllArgsConstructor
 public class MainExceptionHandler {
+
+    private final ErrorDetailsFactory detailsFactory;
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ErrorDetails> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
@@ -26,13 +31,13 @@ public class MainExceptionHandler {
         for (Map.Entry<String, String> entry : validationErrors.entrySet()) {
             validationError.append(entry.getKey()).append(" - ").append(entry.getValue()).append(". ");
         }
-        ErrorDetails errorDetails = new ErrorDetails("Invalid arguments: " + validationError);
+        ErrorDetails errorDetails = detailsFactory.createBadRequest("Invalid arguments: " + validationError);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorDetails> handleHttpMessageNotReadableException() {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ErrorDetails(ValidationMessage.HTTP_MESSAGE_NOT_READABLE));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(detailsFactory.createBadRequest(ValidationMessage.HTTP_MESSAGE_NOT_READABLE));
     }
 
     @ExceptionHandler(RuntimeException.class)
@@ -42,11 +47,11 @@ public class MainExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     public ResponseEntity<ErrorDetails> handleEntityNotFound(EntityNotFoundException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ErrorDetails(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(detailsFactory.createNotFound(ex.getMessage()));
     }
 
     @ExceptionHandler(EntityAlreadyExistsException.class)
     public ResponseEntity<ErrorDetails> handleEntityAlreadyExistsException(EntityAlreadyExistsException ex) {
-        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(new ErrorDetails(ex.getMessage()));
+        return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(detailsFactory.createNotAcceptable(ex.getMessage()));
     }
 }

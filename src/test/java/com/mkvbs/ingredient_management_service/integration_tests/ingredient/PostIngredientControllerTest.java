@@ -76,7 +76,7 @@ class PostIngredientControllerTest extends BasicIntegration {
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonIngredient))
                     .andExpect(status().isNotAcceptable())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS)
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR)
                             .value("Ingredient with name " + ALREADY_SAVED_INGREDIENT_NAME + " already exists."));
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
@@ -93,7 +93,7 @@ class PostIngredientControllerTest extends BasicIntegration {
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonIngredient))
                     .andExpect(status().isBadRequest())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value(containsString(ValidationMessage.INCORRECT_NAME_LEN)));
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value(containsString(ValidationMessage.INCORRECT_NAME_LEN)));
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
         }
@@ -112,7 +112,7 @@ class PostIngredientControllerTest extends BasicIntegration {
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonIngredient))
                     .andExpect(status().isBadRequest())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value(containsString(ValidationMessage.ALLERGEN_NOT_NULL)));
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value(containsString(ValidationMessage.ALLERGEN_NOT_NULL)));
 
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
@@ -131,7 +131,7 @@ class PostIngredientControllerTest extends BasicIntegration {
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonIngredient))
                     .andExpect(status().isBadRequest())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value(containsString(ValidationMessage.TYPE_OF_QUA_NOT_NULL)));
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value(containsString(ValidationMessage.TYPE_OF_QUA_NOT_NULL)));
 
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
@@ -149,9 +149,9 @@ class PostIngredientControllerTest extends BasicIntegration {
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonIngredient))
                     .andExpect(status().isBadRequest())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value(containsString(ValidationMessage.INCORRECT_NAME_LEN)))
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value(containsString(ValidationMessage.ALLERGEN_NOT_NULL)))
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value(containsString(ValidationMessage.TYPE_OF_QUA_NOT_NULL)));
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value(containsString(ValidationMessage.INCORRECT_NAME_LEN)))
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value(containsString(ValidationMessage.ALLERGEN_NOT_NULL)))
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value(containsString(ValidationMessage.TYPE_OF_QUA_NOT_NULL)));
 
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
@@ -192,7 +192,7 @@ class PostIngredientControllerTest extends BasicIntegration {
                             .contentType(MediaType.APPLICATION_JSON)
                             .content(jsonIngredient))
                     .andExpect(status().isBadRequest())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value(ValidationMessage.HTTP_MESSAGE_NOT_READABLE));
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value(ValidationMessage.HTTP_MESSAGE_NOT_READABLE));
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
         }
