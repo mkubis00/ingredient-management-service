@@ -1,17 +1,15 @@
 package com.mkvbs.ingredient_management_service.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
 
 @Getter
+@AllArgsConstructor
 public class ErrorDetails {
 
     private final LocalDateTime timestamp;
-    private final String details;
-
-    public ErrorDetails(final String details) {
-        this.timestamp = LocalDateTime.now();
-        this.details = details;
-    }
+    private final String status;
+    private final String error;
 }

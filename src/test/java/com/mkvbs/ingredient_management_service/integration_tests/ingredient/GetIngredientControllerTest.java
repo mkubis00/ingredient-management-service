@@ -54,7 +54,7 @@ class GetIngredientControllerTest extends BasicIntegration {
         try {
             mockMvc.perform(get(ApiPath.INGREDIENT.TEST_V1 + ID_OF_NOT_SAVED_INGREDIENT))
                     .andExpect(MockMvcResultMatchers.status().isNotFound())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value("Recipe with id: " + ID_OF_NOT_SAVED_INGREDIENT + " not found."));
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value("Recipe with id: " + ID_OF_NOT_SAVED_INGREDIENT + " not found."));
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
         }
@@ -88,7 +88,7 @@ class GetIngredientControllerTest extends BasicIntegration {
         try {
             mockMvc.perform(get(ApiPath.INGREDIENT.TEST_GET_INGREDIENT_ID_BY_NAME_V1 + "notExistingNAme"))
                     .andExpect(MockMvcResultMatchers.status().isNotFound())
-                    .andExpect(jsonPath(TestStringTemplates.JSON_DETAILS).value("Recipe with name: notExistingNAme not found."));
+                    .andExpect(jsonPath(TestStringTemplates.JSON_ERROR).value("Recipe with name: notExistingNAme not found."));
         } catch (Exception e) {
             fail(TestStringTemplates.DEFAULT_FAIL_MESSAGE + e.getMessage());
         }
